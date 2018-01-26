@@ -7,7 +7,11 @@ public class PlayerMovement : MonoBehaviour {
     public string playerID = "P1";
     public float speedReducerValue = 0.5f;
 
-	void Update () {
+    private void Start()
+    {
+        Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
+    }
+    void Update () {
         float moveValueX = Input.GetAxis("Horizontal_" + playerID) * speedReducerValue;
         float moveValueY = Input.GetAxis("Vertical_" + playerID) * speedReducerValue;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x + moveValueX, gameObject.transform.position.y + moveValueY, gameObject.transform.position.z);
