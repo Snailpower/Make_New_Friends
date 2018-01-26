@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212162953046707004}
   - component: {fileID: 50411212169417620}
   - component: {fileID: 58931722042631228}
-  - component: {fileID: 114212648501872336}
+  - component: {fileID: 114667990645003784}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: Infected 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.91
+  m_AngularDrag: 0.33
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114212648501872336
+--- !u!114 &114667990645003784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,9 +86,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307330598569980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed2dac1bdc9d4c94f8012bb368c1cceb, type: 3}
+  m_Script: {fileID: 11500000, guid: 97b8a360ef09aae418c8b709149c3554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  manager: {fileID: 0}
+  location: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
+  forceMultiplier: 5
 --- !u!212 &212162953046707004
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -124,7 +129,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 04fd8e4c704e1b44eadc81955ce141b0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.034482718, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthyUnitManager : MonoBehaviour {
+public class InfectedUnitManager : MonoBehaviour {
 
-    public List<GameObject> unitsHealthy;
+    public List<GameObject> unitsInfected;
 
     public List<GameObject> infectedManagers;
 
-    public GameObject unitHealthyPrefab;
+    public GameObject healthyManager;
 
-    public int healthyAmount = 25;
+    public GameObject unitInfectedPrefab;
+
+    public int infectedIndex;
+
+    public int InfectedAmount = 25;
 
     public Vector3 range = new Vector3(10, 10, 10);
 
     public bool seekGoal = true;
     public bool followFlockingRules = true;
     public bool willful = false;
-    private bool avoiding = true;
+
+    private bool avoiding = false;
+    private bool attacking = true;
 
     [Range(0, 100)]
-    public float scareDistance = 50;
+    public float attackdistance = 50;
+
+    [Range(0, 100)]
+    public float scaredistance = 50;
 
     [Range(0, 100)]
     public float neighbourdistance = 50;
@@ -45,26 +54,32 @@ public class HealthyUnitManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        infectedManagers = new List<GameObject>(4);
 
         foreach (GameObject manager in GameObject.FindGameObjectsWithTag("Infected"))
         {
+            if (manager == this.gameObject)
+            {
+                continue;
+            }
+
             infectedManagers.Add(manager);
         }
 
-        unitsHealthy = new List<GameObject>(healthyAmount);
+        healthyManager = GameObject.FindGameObjectWithTag("Healthy");
 
-        for (int i = 0; i <= healthyAmount; i++)
+        unitsInfected = new List<GameObject>(InfectedAmount);
+
+        for (int i = 0; i <= InfectedAmount; i++)
         {
             Vector3 unitPos = new Vector3(Random.Range(-range.x, range.x),
                                           Random.Range(-range.y, range.y),
                                           Random.Range(0, 0));
 
-            GameObject addedUnit = Instantiate(unitHealthyPrefab, this.transform.position + unitPos, Quaternion.identity);
+            GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity);
 
-            addedUnit.GetComponent<Healthy>().manager = this.gameObject;
+            addedUnit.GetComponent<Infected>().manager = this.gameObject;
 
-            unitsHealthy.Add(addedUnit);
+            unitsInfected.Add(addedUnit);
         }
 		
 	}
