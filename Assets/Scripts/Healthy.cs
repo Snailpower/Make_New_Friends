@@ -34,6 +34,10 @@ public class Healthy : MonoBehaviour {
         {
             if (healthy == gameObject) continue;
             {
+                if (healthy == null)
+                {
+                    continue;
+                }
                 float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
 
                 if (d < neighbourdis)
@@ -96,6 +100,11 @@ public class Healthy : MonoBehaviour {
 
         foreach (GameObject healthy in manager.GetComponent<HealthyUnitManager>().unitsHealthy)
         {
+            if (healthy == null)
+            {
+                continue;
+            }
+
             if (healthy == gameObject) continue;
             {
                 float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
