@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114667990645003784}
   m_Layer: 0
   m_Name: Infected
-  m_TagString: Untagged
+  m_TagString: Infected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   location: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
   forceMultiplier: 5
+  index: 0
 --- !u!212 &212162953046707004
 SpriteRenderer:
   m_ObjectHideFlags: 1

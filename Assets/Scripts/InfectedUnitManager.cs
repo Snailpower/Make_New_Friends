@@ -12,6 +12,8 @@ public class InfectedUnitManager : MonoBehaviour {
 
     public GameObject unitInfectedPrefab;
 
+    public GameObject infectedContainer;
+
     public int infectedIndex;
 
     public int InfectedAmount = 25;
@@ -55,7 +57,7 @@ public class InfectedUnitManager : MonoBehaviour {
     void Start ()
     {
 
-        foreach (GameObject manager in GameObject.FindGameObjectsWithTag("Infected"))
+        foreach (GameObject manager in GameObject.FindGameObjectsWithTag("InfectedMng"))
         {
             if (manager == this.gameObject)
             {
@@ -65,7 +67,7 @@ public class InfectedUnitManager : MonoBehaviour {
             infectedManagers.Add(manager);
         }
 
-        healthyManager = GameObject.FindGameObjectWithTag("Healthy");
+        healthyManager = GameObject.FindGameObjectWithTag("HealthyMng");
 
         unitsInfected = new List<GameObject>(InfectedAmount);
 
@@ -75,7 +77,7 @@ public class InfectedUnitManager : MonoBehaviour {
                                           Random.Range(-range.y, range.y),
                                           Random.Range(0, 0));
 
-            GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity);
+            GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity, infectedContainer.transform);
 
             addedUnit.GetComponent<Infected>().manager = this.gameObject;
 

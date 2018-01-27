@@ -194,6 +194,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &207044090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 207044091}
+  m_Layer: 0
+  m_Name: InfectedContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &207044091
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 207044090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219279216
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +365,7 @@ GameObject:
   - component: {fileID: 548172848}
   m_Layer: 0
   m_Name: UnitManager (4)
-  m_TagString: Infected
+  m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,6 +386,7 @@ MonoBehaviour:
   healthyManager: {fileID: 0}
   unitInfectedPrefab: {fileID: 1307330598569980, guid: a83680d33abe07340a7f9d4d3aff3939,
     type: 2}
+  infectedContainer: {fileID: 207044090}
   infectedIndex: 3
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
@@ -455,6 +484,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &886802942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 886802943}
+  m_Layer: 0
+  m_Name: HealthyContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &886802943
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 886802942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901566327
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +523,7 @@ GameObject:
   - component: {fileID: 901566328}
   m_Layer: 0
   m_Name: UnitManager (1)
-  m_TagString: Infected
+  m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,6 +544,7 @@ MonoBehaviour:
   healthyManager: {fileID: 0}
   unitInfectedPrefab: {fileID: 1307330598569980, guid: 908dde61abe08ca4bb86831705e76d9a,
     type: 2}
+  infectedContainer: {fileID: 207044090}
   infectedIndex: 0
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
@@ -522,7 +580,7 @@ GameObject:
   - component: {fileID: 1153356468}
   m_Layer: 0
   m_Name: UnitManager (3)
-  m_TagString: Infected
+  m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,6 +601,7 @@ MonoBehaviour:
   healthyManager: {fileID: 0}
   unitInfectedPrefab: {fileID: 1307330598569980, guid: 68ba8dc87ac193c4ea962bd998fc021b,
     type: 2}
+  infectedContainer: {fileID: 207044090}
   infectedIndex: 2
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
@@ -578,7 +637,7 @@ GameObject:
   - component: {fileID: 1254696596}
   m_Layer: 0
   m_Name: UnitManager (2)
-  m_TagString: Infected
+  m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,6 +658,7 @@ MonoBehaviour:
   healthyManager: {fileID: 0}
   unitInfectedPrefab: {fileID: 1307330598569980, guid: aee06410ff2d038418ffabe02c61c334,
     type: 2}
+  infectedContainer: {fileID: 207044090}
   infectedIndex: 1
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
@@ -685,7 +745,7 @@ GameObject:
   - component: {fileID: 1600017452}
   m_Layer: 0
   m_Name: UnitManager
-  m_TagString: Healthy
+  m_TagString: HealthyMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,6 +765,7 @@ MonoBehaviour:
   infectedManagers: []
   unitHealthyPrefab: {fileID: 1307330598569980, guid: 7adb874fcb9aefa4085c09e4c215d1a7,
     type: 2}
+  healthyContainer: {fileID: 886802942}
   healthyAmount: 150
   range: {x: 31.6, y: 24.5, z: 10}
   seekGoal: 0

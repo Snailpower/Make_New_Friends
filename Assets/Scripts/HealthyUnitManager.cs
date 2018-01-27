@@ -10,6 +10,8 @@ public class HealthyUnitManager : MonoBehaviour {
 
     public GameObject unitHealthyPrefab;
 
+    public GameObject healthyContainer;
+
     public int healthyAmount = 25;
 
     public Vector3 range = new Vector3(10, 10, 10);
@@ -47,7 +49,7 @@ public class HealthyUnitManager : MonoBehaviour {
     {
         infectedManagers = new List<GameObject>(4);
 
-        foreach (GameObject manager in GameObject.FindGameObjectsWithTag("Infected"))
+        foreach (GameObject manager in GameObject.FindGameObjectsWithTag("InfectedMng"))
         {
             infectedManagers.Add(manager);
         }
@@ -60,7 +62,7 @@ public class HealthyUnitManager : MonoBehaviour {
                                           Random.Range(-range.y, range.y),
                                           Random.Range(0, 0));
 
-            GameObject addedUnit = Instantiate(unitHealthyPrefab, this.transform.position + unitPos, Quaternion.identity);
+            GameObject addedUnit = Instantiate(unitHealthyPrefab, this.transform.position + unitPos, Quaternion.identity, healthyContainer.transform);
 
             addedUnit.GetComponent<Healthy>().manager = this.gameObject;
 

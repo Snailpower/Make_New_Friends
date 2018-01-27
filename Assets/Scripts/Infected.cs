@@ -12,9 +12,11 @@ public class Infected : MonoBehaviour {
     public Vector2 velocity;
     public float forceMultiplier;
 
+    [HideInInspector]
+    public int index;
+
     private Vector2 goalpos = Vector2.zero;
     private Vector2 currentForce;
-    private int index;
     private bool attacking = false;
 
 
@@ -65,7 +67,10 @@ public class Infected : MonoBehaviour {
 
         foreach (GameObject healthy in manager.GetComponent<InfectedUnitManager>().healthyManager.GetComponent<HealthyUnitManager>().unitsHealthy)
         {
-
+            if (healthy == null)
+            {
+                continue;
+            }
                 float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
 
                 sumHumanD += d;
@@ -79,6 +84,11 @@ public class Infected : MonoBehaviour {
         {
             foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
             {
+                if (infected == null)
+                {
+                    continue;
+                }
+
                 if (infected.GetComponent<Infected>().index != index)
                 {
                     float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
@@ -95,6 +105,11 @@ public class Infected : MonoBehaviour {
         {
             foreach (GameObject healthy in manager.GetComponent<InfectedUnitManager>().healthyManager.GetComponent<HealthyUnitManager>().unitsHealthy)
             {
+                if (healthy == null)
+                {
+                    continue;
+                }
+
                 float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
 
                 if (d < attackdis)
@@ -115,6 +130,11 @@ public class Infected : MonoBehaviour {
             {
                 foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
                 {
+                    if (infected == null)
+                    {
+                        continue;
+                    }
+
                     if (infected.GetComponent<Infected>().index != index)
                     {
                         float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
@@ -156,6 +176,11 @@ public class Infected : MonoBehaviour {
         {
             foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
             {
+                if (infected == null)
+                {
+                    continue;
+                }
+
                 if (infected.GetComponent<Infected>().index != index)
                 {
                     float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
@@ -187,6 +212,11 @@ public class Infected : MonoBehaviour {
 
         foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
         {
+            if (infected == null)
+            {
+                continue;
+            }
+
             if (infected == gameObject) continue;
             {
                 float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
@@ -282,13 +312,29 @@ public class Infected : MonoBehaviour {
 	void Update ()
     {
         Flock();
-        goalpos = target.transform.position;
+        if (target != null)
+        {
+            goalpos = target.transform.position;
+        }
+        
 		
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        GameObject otherObj = collision.gameObject;
+
+        if (otherObj.tag == "Healthy")
+        {
+
+            Destroy(otherObj);
+
+            GameObject newInfected = Instantiate(manager.GetComponent<InfectedUnitManager>().unitInfectedPrefab, this.transform.position, Quaternion.identity, manager.GetComponent<InfectedUnitManager>().infectedContainer.transform);
+
+            newInfected.GetComponent<Infected>().manager = manager;
+
+            manager.GetComponent<InfectedUnitManager>().unitsInfected.Add(newInfected);
+        }
     }
 
 
