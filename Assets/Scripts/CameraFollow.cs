@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour {
     public float minZoom;
     public float dampTime = 0.2f;
     public float zoomSpeed = 1;
-    [HideInInspector]
+    //[HideInInspector]
     public List<Transform> targets = new List<Transform>();
     private Camera mainCamera;
 
