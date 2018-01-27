@@ -11,8 +11,7 @@ public class Infected : MonoBehaviour {
     public Vector2 location = Vector2.zero;
     public Vector2 velocity;
     public float forceMultiplier;
-
-    [HideInInspector]
+    
     public int index;
 
     private Vector2 goalpos = Vector2.zero;
