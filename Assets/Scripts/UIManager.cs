@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour {
             howLongPlayerHasTimeToGatherMinions -= Time.deltaTime;
         if(howLongPlayerHasTimeToGatherMinions <= 0)
         {
-            print("Show Shit");
             if (player1MinionCount <= 1 && canShowP1DiedScreen)
                 ShowPlayerDiedMenu(0);
             else if (player2MinionCount <= 1 && canShowP2DiedScreen)
@@ -78,7 +77,6 @@ public class UIManager : MonoBehaviour {
             else if (player4MinionCount <= 1 && canShowP4DiedScreen)
                 ShowPlayerDiedMenu(3);
         }
-        print("ASD: " + howLongPlayerHasTimeToGatherMinions);
         
     }
     private void updateMinionCountTexts()

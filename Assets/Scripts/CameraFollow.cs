@@ -37,9 +37,12 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
         Move();
         Zoom();
-        if(Input.GetKeyDown("joystick button 7"))
+        if(Input.GetKeyDown("joystick button 6"))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
+
+        if (Input.GetKeyDown("joystick button 7"))
+            SceneManager.LoadScene(0);
+    }
     
 
     private void Awake()
