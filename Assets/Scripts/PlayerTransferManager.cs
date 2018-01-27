@@ -16,9 +16,13 @@ public class PlayerTransferManager : MonoBehaviour
         nearestInfected = myInfectedObjects[0];
         foreach (GameObject infected in myInfectedObjects)
         {
-            //if(infected.GetComponent<Infected>().index == playerIndex)
-                if (Vector3.Distance(infected.transform.position, gameObject.transform.position) < Vector3.Distance(gameObject.transform.position, nearestInfected.transform.position))
+            if (infected.GetComponent<Infected>().index == playerIndex)
+            {
+                if (Vector3.Distance(infected.transform.position, gameObject.transform.position) < Vector3.Distance(gameObject.transform.position, nearestInfected.transform.position) && infected != gameObject)
                     nearestInfected = infected;
+                print("nearestInfected  " + nearestInfected);
+            }
+                
         }
         //Destroy(nearestInfected.GetComponent<Infected>());
         nearestInfected.GetComponent<Infected>().userControlled = true;
