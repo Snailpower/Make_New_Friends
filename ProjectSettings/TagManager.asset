@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Healthy
   - Infected
+  - TEMPTAG
   layers:
   - Default
   - TransparentFX
