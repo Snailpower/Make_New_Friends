@@ -24,14 +24,14 @@ public class InfectedUnitManager : MonoBehaviour {
     public bool followFlockingRules = true;
     public bool willful = false;
 
-    private bool avoiding = false;
-    private bool attacking = true;
+    //private bool avoiding = false;
+    public bool attacking = true;
 
     public float minHealth;
 
     public float maxHealth;
 
-    [Range(0, 100)]
+    [Range(0, 700)]
     public float attackdistance = 50;
 
     [Range(0, 100)]
@@ -58,7 +58,7 @@ public class InfectedUnitManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
 
         foreach (GameObject manager in GameObject.FindGameObjectsWithTag("InfectedMng"))

@@ -9,8 +9,7 @@ public class PlayerHealthManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown("Boost_" + gameObject.GetComponent<PlayerMovement>().playerID ) && canBeReduced)
-            ReduceHealth(10);
+        
     }
 
     public void ReduceHealth(float amount)
@@ -21,6 +20,7 @@ public class PlayerHealthManager : MonoBehaviour {
             KillPlayer();
     }
 
+    /*
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Infected" && collision.gameObject.GetComponent<Infected>().index != gameObject.GetComponent<PlayerTransferManager>().playerIndex)
@@ -39,6 +39,7 @@ public class PlayerHealthManager : MonoBehaviour {
             ReduceHealth(10f);
         }
     }
+    */
     public void KillPlayer()
     {
         Camera.main.GetComponent<CameraFollow>().targets.Remove(gameObject.transform);

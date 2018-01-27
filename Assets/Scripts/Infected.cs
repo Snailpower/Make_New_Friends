@@ -169,6 +169,60 @@ public class Infected : MonoBehaviour {
                 }
             }
         }
+        else if ((sumInfectedD / countI == 0))
+        {
+            foreach (GameObject healthy in manager.GetComponent<InfectedUnitManager>().healthyManager.GetComponent<HealthyUnitManager>().unitsHealthy)
+            {
+                if (healthy == null)
+                {
+                    continue;
+                }
+
+                float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
+
+                if (d < attackdis)
+                {
+                    Vector2 steer = healthy.GetComponent<Healthy>().location - location;
+
+                    attacking = true;
+
+                    target = healthy;
+
+                    return steer;
+                }
+            }
+        }
+        else if ((sumHumanD / countH == 0))
+        {
+            foreach (GameObject manager in manager.GetComponent<InfectedUnitManager>().infectedManagers)
+            {
+                foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
+                {
+                    if (infected == null)
+                    {
+                        continue;
+                    }
+
+                    if (infected.GetComponent<Infected>().index != index)
+                    {
+                        float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
+
+                        if (d < attackdis)
+                        {
+                            Vector2 steer = infected.GetComponent<Infected>().location - location;
+
+                            attacking = true;
+
+                            target = infected;
+
+                            return steer;
+                        }
+
+
+                    }
+                }
+            }
+        }
         
 
 
@@ -298,18 +352,28 @@ public class Infected : MonoBehaviour {
         {
             Vector2 ali = align();
             Vector2 coh = Cohesion();
-            Vector2 atk = Attack();
-            Vector2 avd = Avoid();
 
             Vector2 gp;
             if (manager.GetComponent<InfectedUnitManager>().seekGoal)
             {
+                foreach (GameObject item in manager.GetComponent<InfectedUnitManager>().unitsInfected)
+                {
+                    if (item == this.gameObject || item == null)
+                    {
+                        continue;
+                    }
+                    if (item.GetComponent<Infected>().userControlled)
+                    {
+                        target = item;
+                    }
+                    
+                }
                 gp = seek(goalpos);
-                currentForce = gp + coh + atk + avd;
+                currentForce = gp + coh + ali;
             }
             else
             {
-                currentForce = coh + atk + avd;
+                currentForce = coh + ali;
             }
 
             ApplyForce(currentForce * forceMultiplier);
@@ -326,20 +390,34 @@ public class Infected : MonoBehaviour {
         ApplyForce(currentForce * forceMultiplier);
     }
 
+    private void OnDestroy()
+    {
+        manager.GetComponent<InfectedUnitManager>().unitsInfected.Remove(gameObject);
+    }
 
-	
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
         if (userControlled)
+        {
             return;
-        Flock();
+        }
+
+
+
+        if (!userControlled)
+        {
+            Flock();
+        }
+        
+
+
         if (target != null)
         {
             goalpos = target.transform.position;
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !userControlled)
         {
             Camera.main.GetComponent<CameraFollow>().targets.Remove(gameObject.transform);
             Destroy(this.gameObject);
@@ -354,6 +432,7 @@ public class Infected : MonoBehaviour {
         {
 
             Camera.main.GetComponent<CameraFollow>().targets.Remove(otherObj.transform);
+            otherObj.GetComponent<Healthy>().manager.GetComponent<HealthyUnitManager>().unitsHealthy.Remove(otherObj);
             Destroy(otherObj);
 
             GameObject newInfected = Instantiate(manager.GetComponent<InfectedUnitManager>().unitInfectedPrefab, this.transform.position, Quaternion.identity, manager.GetComponent<InfectedUnitManager>().infectedContainer.transform);
@@ -364,7 +443,7 @@ public class Infected : MonoBehaviour {
             manager.GetComponent<InfectedUnitManager>().unitsInfected.Add(newInfected);
         }
 
-        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index)
+        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index && !userControlled)
         {
             otherObj.GetComponent<Infected>().currentHealth -= 10f;
         }
@@ -375,7 +454,7 @@ public class Infected : MonoBehaviour {
     {
         GameObject otherObj = collision.gameObject;
 
-        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index)
+        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index && !userControlled)
         {
             otherObj.GetComponent<Infected>().currentHealth -= Time.deltaTime;
         }

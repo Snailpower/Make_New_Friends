@@ -14,12 +14,18 @@ public class PlayerInputManager : MonoBehaviour {
         if(Input.GetButtonDown("ButtonA_" + gameObject.GetComponent<PlayerMovement>().playerID))
         {
             print("ASDAA");
-            infectedUnitManager.followFlockingRules = !infectedUnitManager.followFlockingRules;
+            infectedUnitManager.followFlockingRules = true;
+            infectedUnitManager.seekGoal = true;
+            infectedUnitManager.willful = false;
+            infectedUnitManager.attacking = false;
         }
         if (Input.GetButtonDown("ButtonB_" + gameObject.GetComponent<PlayerMovement>().playerID))
         {
             print("ASDBBB");
-            infectedUnitManager.willful = !infectedUnitManager.willful;
+            infectedUnitManager.followFlockingRules = false;
+            infectedUnitManager.seekGoal = false;
+            infectedUnitManager.willful = true;
+            infectedUnitManager.attacking = true;
         }
     }
 }
