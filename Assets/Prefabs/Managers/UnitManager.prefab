@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114365512984584040}
   m_Layer: 0
   m_Name: UnitManager
-  m_TagString: InfectedMng
+  m_TagString: HealthyMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

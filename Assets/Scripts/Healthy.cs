@@ -64,6 +64,8 @@ public class Healthy : MonoBehaviour {
         {
             foreach (GameObject infected in infectedManager.GetComponent<InfectedUnitManager>().unitsInfected)
             {
+                if (infected == null)
+                    continue;
                 float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
 
                 if (d < scaredis)

@@ -9,43 +9,43 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1753719219780736}
+  m_RootGameObject: {fileID: 1851977603126262}
   m_IsPrefabParent: 1
---- !u!1 &1753719219780736
+--- !u!1 &1851977603126262
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4469626407028162}
-  - component: {fileID: 114412424929738006}
+  - component: {fileID: 4546553743791360}
+  - component: {fileID: 114548822786420318}
   m_Layer: 0
-  m_Name: UnitManager (4)
+  m_Name: UnitManager (3)
   m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4469626407028162
+--- !u!4 &4546553743791360
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1753719219780736}
+  m_GameObject: {fileID: 1851977603126262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.3, y: 40.5, z: 0}
+  m_LocalPosition: {x: 58, y: 42.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114412424929738006
+--- !u!114 &114548822786420318
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1753719219780736}
+  m_GameObject: {fileID: 1851977603126262}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04de2b28854a878458343b46e8e3b3b8, type: 3}
@@ -54,10 +54,10 @@ MonoBehaviour:
   unitsInfected: []
   infectedManagers: []
   healthyManager: {fileID: 0}
-  unitInfectedPrefab: {fileID: 1307330598569980, guid: a83680d33abe07340a7f9d4d3aff3939,
+  unitInfectedPrefab: {fileID: 1307330598569980, guid: 68ba8dc87ac193c4ea962bd998fc021b,
     type: 2}
   infectedContainer: {fileID: 0}
-  infectedIndex: 3
+  infectedIndex: 2
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
   seekGoal: 0
