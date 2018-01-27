@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50411212169417620}
   - component: {fileID: 58931722042631228}
   - component: {fileID: 114212648501872336}
+  - component: {fileID: 95570927679315406}
   m_Layer: 0
   m_Name: Healthy
   m_TagString: Healthy
@@ -78,6 +79,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!95 &95570927679315406
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1307330598569980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae4cb73ff476a7b49b3eb7fda199397a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114212648501872336
 MonoBehaviour:
   m_ObjectHideFlags: 1

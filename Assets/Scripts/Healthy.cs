@@ -18,6 +18,11 @@ public class Healthy : MonoBehaviour {
     private Vector2 goalpos = Vector2.zero;
     private Vector2 currentForce;
 
+    private float standingVelocity = .5f;
+
+    private Animator anim;
+
+
 
     private Vector2 seek(Vector2 target)
     {
@@ -129,6 +134,7 @@ public class Healthy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        anim = GetComponent<Animator>();
         Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
         target = manager;
 
@@ -205,8 +211,10 @@ public class Healthy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        anim.SetFloat("VelocityLimit", GetComponent<Rigidbody2D>().velocity.magnitude);
+
         Flock();
         goalpos = target.transform.position;
-		
+
 	}
 }
