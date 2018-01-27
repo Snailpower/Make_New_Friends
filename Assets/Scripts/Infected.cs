@@ -25,6 +25,8 @@ public class Infected : MonoBehaviour {
 
     public bool userControlled = false;
 
+    private Animator anim;
+
 
     private Vector2 seek(Vector2 target)
     {
@@ -310,6 +312,7 @@ public class Infected : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        anim = GetComponent<Animator>();
         Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
         target = manager;
         index = manager.GetComponent<InfectedUnitManager>().infectedIndex;
@@ -408,6 +411,8 @@ public class Infected : MonoBehaviour {
         if (!userControlled)
         {
             Flock();
+
+            anim.SetFloat("Velocity", GetComponent<Rigidbody2D>().velocity.magnitude);
         }
         
 
