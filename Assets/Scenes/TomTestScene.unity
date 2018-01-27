@@ -338,6 +338,8 @@ MonoBehaviour:
   seekGoal: 0
   followFlockingRules: 1
   willful: 1
+  minHealth: 0
+  maxHealth: 0
   attackdistance: 34
   scaredistance: 50
   neighbourdistance: 50
@@ -496,6 +498,8 @@ MonoBehaviour:
   seekGoal: 0
   followFlockingRules: 1
   willful: 1
+  minHealth: 0
+  maxHealth: 0
   attackdistance: 34
   scaredistance: 50
   neighbourdistance: 50
@@ -553,6 +557,8 @@ MonoBehaviour:
   seekGoal: 0
   followFlockingRules: 1
   willful: 1
+  minHealth: 0
+  maxHealth: 0
   attackdistance: 34
   scaredistance: 50
   neighbourdistance: 50
@@ -610,6 +616,8 @@ MonoBehaviour:
   seekGoal: 0
   followFlockingRules: 1
   willful: 1
+  minHealth: 0
+  maxHealth: 0
   attackdistance: 34
   scaredistance: 50
   neighbourdistance: 50

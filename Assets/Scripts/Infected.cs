@@ -11,7 +11,12 @@ public class Infected : MonoBehaviour {
     public Vector2 location = Vector2.zero;
     public Vector2 velocity;
     public float forceMultiplier;
-    
+
+    [HideInInspector]
+    public float startHealth;
+
+    private float currentHealth;
+
     public int index;
 
     private Vector2 goalpos = Vector2.zero;
@@ -246,6 +251,8 @@ public class Infected : MonoBehaviour {
         target = manager;
         index = manager.GetComponent<InfectedUnitManager>().infectedIndex;
 
+        currentHealth = startHealth;
+
         velocity = new Vector2(Random.Range(0.1f, 0.1f), Random.Range(0.1f, 0.1f));
         location = new Vector2(transform.position.x, transform.position.y);
 		
@@ -320,8 +327,12 @@ public class Infected : MonoBehaviour {
         {
             goalpos = target.transform.position;
         }
-        
-		
+
+        if (currentHealth <= 0)
+        {
+            Camera.main.GetComponent<CameraFollow>().targets.Remove(gameObject.transform);
+            Destroy(this.gameObject);
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -339,6 +350,11 @@ public class Infected : MonoBehaviour {
             newInfected.GetComponent<Infected>().manager = manager;
 
             manager.GetComponent<InfectedUnitManager>().unitsInfected.Add(newInfected);
+        }
+
+        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index)
+        {
+            otherObj.GetComponent<Infected>().currentHealth -= Time.deltaTime;
         }
     }
 
