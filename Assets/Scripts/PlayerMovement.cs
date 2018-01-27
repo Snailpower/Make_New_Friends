@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Start()
     {
-        Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
     }
     void Update () {
         float moveValueX = Input.GetAxis("Horizontal_" + playerID) * speedReducerValue;
