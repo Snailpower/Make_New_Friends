@@ -39,6 +39,11 @@ public class Infected : MonoBehaviour {
 
         foreach(GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
         {
+            if (infected == null)
+            {
+                continue;
+            }
+
             if (infected == gameObject) continue;
             {
                 float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
@@ -107,60 +112,64 @@ public class Infected : MonoBehaviour {
             }
         }
 
-        if ((sumHumanD/countH) < (sumInfectedD/countI))
+        if ((sumHumanD / countH != 0) && (sumInfectedD / countI != 0))
         {
-            foreach (GameObject healthy in manager.GetComponent<InfectedUnitManager>().healthyManager.GetComponent<HealthyUnitManager>().unitsHealthy)
+            if ((sumHumanD / countH) < (sumInfectedD / countI))
             {
-                if (healthy == null)
+                foreach (GameObject healthy in manager.GetComponent<InfectedUnitManager>().healthyManager.GetComponent<HealthyUnitManager>().unitsHealthy)
                 {
-                    continue;
-                }
-
-                float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
-
-                if (d < attackdis)
-                {
-                    Vector2 steer = healthy.GetComponent<Healthy>().location - location;
-
-                    attacking = true;
-
-                    target = healthy;
-
-                    return steer;
-                }
-            }
-        }
-        else
-        {
-            foreach (GameObject manager in manager.GetComponent<InfectedUnitManager>().infectedManagers)
-            {
-                foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
-                {
-                    if (infected == null)
+                    if (healthy == null)
                     {
                         continue;
                     }
 
-                    if (infected.GetComponent<Infected>().index != index)
+                    float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
+
+                    if (d < attackdis)
                     {
-                        float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
+                        Vector2 steer = healthy.GetComponent<Healthy>().location - location;
 
-                        if (d < attackdis)
+                        attacking = true;
+
+                        target = healthy;
+
+                        return steer;
+                    }
+                }
+            }
+            else
+            {
+                foreach (GameObject manager in manager.GetComponent<InfectedUnitManager>().infectedManagers)
+                {
+                    foreach (GameObject infected in manager.GetComponent<InfectedUnitManager>().unitsInfected)
+                    {
+                        if (infected == null)
                         {
-                            Vector2 steer = infected.GetComponent<Infected>().location - location;
-
-                            attacking = true;
-
-                            target = infected;
-
-                            return steer;
+                            continue;
                         }
 
+                        if (infected.GetComponent<Infected>().index != index)
+                        {
+                            float d = Vector2.Distance(location, infected.GetComponent<Infected>().location);
 
+                            if (d < attackdis)
+                            {
+                                Vector2 steer = infected.GetComponent<Infected>().location - location;
+
+                                attacking = true;
+
+                                target = infected;
+
+                                return steer;
+                            }
+
+
+                        }
                     }
                 }
             }
         }
+        
 
 
         return Vector2.zero;
@@ -348,9 +357,21 @@ public class Infected : MonoBehaviour {
             GameObject newInfected = Instantiate(manager.GetComponent<InfectedUnitManager>().unitInfectedPrefab, this.transform.position, Quaternion.identity, manager.GetComponent<InfectedUnitManager>().infectedContainer.transform);
 
             newInfected.GetComponent<Infected>().manager = manager;
+            newInfected.GetComponent<Infected>().startHealth = Mathf.Round(Random.Range(manager.GetComponent<InfectedUnitManager>().minHealth, manager.GetComponent<InfectedUnitManager>().maxHealth)); 
 
             manager.GetComponent<InfectedUnitManager>().unitsInfected.Add(newInfected);
         }
+
+        if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index)
+        {
+            otherObj.GetComponent<Infected>().currentHealth -= 10f;
+        }
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        GameObject otherObj = collision.gameObject;
 
         if (otherObj.tag == "Infected" && otherObj.GetComponent<Infected>().index != index)
         {
