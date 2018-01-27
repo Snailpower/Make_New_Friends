@@ -19,6 +19,8 @@ public class Infected : MonoBehaviour {
     private Vector2 currentForce;
     private bool attacking = false;
 
+    public bool userControlled = false;
+
 
     private Vector2 seek(Vector2 target)
     {
@@ -71,7 +73,7 @@ public class Infected : MonoBehaviour {
             {
                 continue;
             }
-                float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);
+                float d = Vector2.Distance(location, healthy.GetComponent<Healthy>().location);     
 
                 sumHumanD += d;
                 countH++;
@@ -241,6 +243,7 @@ public class Infected : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
         target = manager;
         index = manager.GetComponent<InfectedUnitManager>().infectedIndex;
 
@@ -311,6 +314,8 @@ public class Infected : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (userControlled)
+            return;
         Flock();
         if (target != null)
         {
@@ -327,6 +332,7 @@ public class Infected : MonoBehaviour {
         if (otherObj.tag == "Healthy")
         {
 
+            Camera.main.GetComponent<CameraFollow>().targets.Remove(otherObj.transform);
             Destroy(otherObj);
 
             GameObject newInfected = Instantiate(manager.GetComponent<InfectedUnitManager>().unitInfectedPrefab, this.transform.position, Quaternion.identity, manager.GetComponent<InfectedUnitManager>().infectedContainer.transform);

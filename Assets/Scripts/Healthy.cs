@@ -120,6 +120,7 @@ public class Healthy : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
         target = manager;
 
         velocity = new Vector2(Random.Range(0.1f, 0.1f), Random.Range(0.1f, 0.1f));
