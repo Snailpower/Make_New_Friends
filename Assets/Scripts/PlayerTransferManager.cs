@@ -19,10 +19,14 @@ public class PlayerTransferManager : MonoBehaviour
             if (infected.GetComponent<Infected>().index == playerIndex)
             {
                 if (Vector3.Distance(infected.transform.position, gameObject.transform.position) < Vector3.Distance(gameObject.transform.position, nearestInfected.transform.position) && infected != gameObject)
+                {
                     nearestInfected = infected;
-                print("nearestInfected  " + nearestInfected);
+                    print("nearestInfected  " + nearestInfected);
+                }
+                else
+                    print("Player died");
             }
-                
+
         }
         //Destroy(nearestInfected.GetComponent<Infected>());
         nearestInfected.GetComponent<Infected>().userControlled = true;

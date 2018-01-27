@@ -262,6 +262,8 @@ public class Infected : MonoBehaviour {
 
         currentHealth = startHealth;
 
+        manager.GetComponent<InfectedUnitManager>().unitsInfected.Add(gameObject);
+
         velocity = new Vector2(Random.Range(0.1f, 0.1f), Random.Range(0.1f, 0.1f));
         location = new Vector2(transform.position.x, transform.position.y);
 		
