@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 61079989012028620}
   - component: {fileID: 114164894066850382}
   - component: {fileID: 50148126217652076}
+  - component: {fileID: 114609674969935700}
   m_Layer: 0
   m_Name: Player3
   m_TagString: Infected
@@ -147,6 +148,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 2
+--- !u!114 &114609674969935700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260992469333394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bb0f9bbc5cb0645b5fdfe01064003b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212653243869030858
 SpriteRenderer:
   m_ObjectHideFlags: 1
