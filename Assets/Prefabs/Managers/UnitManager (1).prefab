@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114134199743939114}
   m_Layer: 0
   m_Name: UnitManager (1)
-  m_TagString: Infected
+  m_TagString: InfectedMng
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,6 +56,7 @@ MonoBehaviour:
   healthyManager: {fileID: 0}
   unitInfectedPrefab: {fileID: 1307330598569980, guid: 908dde61abe08ca4bb86831705e76d9a,
     type: 2}
+  infectedContainer: {fileID: 0}
   infectedIndex: 0
   InfectedAmount: 0
   range: {x: 10, y: 10, z: 10}
