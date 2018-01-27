@@ -27,6 +27,10 @@ public class InfectedUnitManager : MonoBehaviour {
     private bool avoiding = false;
     private bool attacking = true;
 
+    public float minHealth;
+
+    public float maxHealth;
+
     [Range(0, 100)]
     public float attackdistance = 50;
 
@@ -80,6 +84,8 @@ public class InfectedUnitManager : MonoBehaviour {
             GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity, infectedContainer.transform);
 
             addedUnit.GetComponent<Infected>().manager = this.gameObject;
+
+            addedUnit.GetComponent<Infected>().startHealth = Mathf.Round(Random.Range(minHealth, maxHealth));
 
             unitsInfected.Add(addedUnit);
         }
