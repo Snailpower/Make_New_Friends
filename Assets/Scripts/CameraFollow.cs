@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
     
     public float minZoom;
+    public float maxZoom = 110f;
     public float dampTime = 0.2f;
     public float zoomSpeed = 1;
     //[HideInInspector]
@@ -16,10 +17,21 @@ public class CameraFollow : MonoBehaviour {
     private Vector3 m_MoveVelocity;                 // Reference velocity for the smooth damping of the position.
     private Vector3 m_DesiredPosition;              // The position the camera is moving towards.
 
+    private Bounds bounds;
+    public SpriteRenderer spriteBounds;
+
+
+    private float rightBound;
+    private float leftBound;
+    private float topBound;
+    private float bottomBound;
+
+
 
     void Start () {
         mainCamera = gameObject.GetComponent<Camera>();
-	}
+        bounds.Encapsulate(spriteBounds.bounds);
+    }
 	
 	void LateUpdate () {
         Move();
@@ -36,8 +48,22 @@ public class CameraFollow : MonoBehaviour {
         // Find the average position of the targets.
         FindAveragePosition();
 
+
+        float camVertExtent = mainCamera.orthographicSize;
+        float camHorzExtent = mainCamera.aspect * camVertExtent;
+
+
+        leftBound = bounds.min.x + camHorzExtent;
+        rightBound = bounds.max.x - camHorzExtent;
+        bottomBound = bounds.min.y + camVertExtent;
+        topBound = bounds.max.y - camVertExtent;
+
+        float camX = Mathf.Clamp(m_DesiredPosition.x, leftBound, rightBound);
+        float camY = Mathf.Clamp(m_DesiredPosition.y, bottomBound, topBound);
+
+
         // Smoothly transition to that position.
-        transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, dampTime);
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(camX,camY,m_DesiredPosition.z), ref m_MoveVelocity, dampTime);
     }
 
 
@@ -111,6 +137,8 @@ public class CameraFollow : MonoBehaviour {
 
         // Make sure the camera's size isn't below the minimum.
         size = Mathf.Max(size, minZoom);
+
+        size = Mathf.Min(size, maxZoom);
         
 
         return size;

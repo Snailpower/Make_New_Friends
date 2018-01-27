@@ -9,7 +9,7 @@ public class PlayerHealthManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && canBeReduced)
+        if (Input.GetButtonDown("Boost_" + gameObject.GetComponent<PlayerMovement>().playerID ) && canBeReduced)
             ReduceHealth(10);
     }
 
