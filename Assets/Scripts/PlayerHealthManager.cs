@@ -13,12 +13,31 @@ public class PlayerHealthManager : MonoBehaviour {
             ReduceHealth(10);
     }
 
-    public void ReduceHealth(int amount)
+    public void ReduceHealth(float amount)
     {
         playerHealth -= amount;
 
         if (playerHealth < 0)
             KillPlayer();
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Infected" && collision.gameObject.GetComponent<Infected>().index != gameObject.GetComponent<PlayerTransferManager>().playerIndex)
+        {
+            //collision.game.GetComponent<Infected>().currentHealth -= Time.deltaTime;
+            ReduceHealth(Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Infected" && collision.gameObject.GetComponent<Infected>().index != gameObject.GetComponent<PlayerTransferManager>().playerIndex)
+        {
+            //collision.game.GetComponent<Infected>().currentHealth -= Time.deltaTime;
+            ReduceHealth(10f);
+        }
     }
     public void KillPlayer()
     {

@@ -81,15 +81,15 @@ public class InfectedUnitManager : MonoBehaviour {
                                           Random.Range(-range.y, range.y),
                                           Random.Range(0, 0));
 
-            GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity, infectedContainer.transform);
+            //GameObject addedUnit = Instantiate(unitInfectedPrefab, this.transform.position + unitPos, Quaternion.identity, infectedContainer.transform);
 
-            addedUnit.GetComponent<Infected>().manager = this.gameObject;
+            //addedUnit.GetComponent<Infected>().manager = this.gameObject;
 
-            addedUnit.GetComponent<Infected>().startHealth = Mathf.Round(Random.Range(minHealth, maxHealth));
+            //addedUnit.GetComponent<Infected>().startHealth = Mathf.Round(Random.Range(minHealth, maxHealth));
 
-            unitsInfected.Add(addedUnit);
+            //unitsInfected.Add(addedUnit);
         }
-		
+		    
 	}
 	
 	// Update is called once per frame
