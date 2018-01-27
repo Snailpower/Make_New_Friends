@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour {
@@ -36,6 +37,8 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
         Move();
         Zoom();
+        if(Input.GetKeyDown("joystick button 7"))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
     
 
