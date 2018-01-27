@@ -519,6 +519,11 @@ Prefab:
       propertyPath: unitsInfected.Array.data[0]
       value: 
       objectReference: {fileID: 51652485}
+    - target: {fileID: 114134199743939114, guid: 61a8bc3edd4a88d458b5d4a36cb073f9,
+        type: 2}
+      propertyPath: scaredistance
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61a8bc3edd4a88d458b5d4a36cb073f9, type: 2}
   m_IsPrefabParent: 0
