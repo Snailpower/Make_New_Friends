@@ -133,7 +133,11 @@ public class Infected : MonoBehaviour {
 
                         attacking = true;
 
-                        target = healthy;
+                        if (healthy != null)
+                        {
+                            target = healthy;
+                        }
+                        
 
                         return steer;
                     }
@@ -160,7 +164,11 @@ public class Infected : MonoBehaviour {
 
                                 attacking = true;
 
-                                target = infected;
+                                if (!infected.GetComponent<Infected>().userControlled)
+                                {
+                                    target = infected;
+                                }
+                                
 
                                 return steer;
                             }
@@ -188,7 +196,10 @@ public class Infected : MonoBehaviour {
 
                     attacking = true;
 
-                    target = healthy;
+                    if (healthy != null)
+                    {
+                        target = healthy;
+                    }
 
                     return steer;
                 }
@@ -215,7 +226,10 @@ public class Infected : MonoBehaviour {
 
                             attacking = true;
 
-                            target = infected;
+                            if (!infected.GetComponent<Infected>().userControlled)
+                            {
+                                target = infected;
+                            }
 
                             return steer;
                         }
@@ -314,7 +328,7 @@ public class Infected : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         Camera.main.GetComponent<CameraFollow>().targets.Add(gameObject.transform);
-        target = manager;
+        //target = manager;
         index = manager.GetComponent<InfectedUnitManager>().infectedIndex;
 
         currentHealth = startHealth;
@@ -395,6 +409,10 @@ public class Infected : MonoBehaviour {
 
     private void OnDestroy()
     {
+        if (userControlled)
+        {
+            Camera.main.GetComponent<CameraFollow>().targets.Remove(gameObject.transform);
+        }
         manager.GetComponent<InfectedUnitManager>().unitsInfected.Remove(gameObject);
     }
 
